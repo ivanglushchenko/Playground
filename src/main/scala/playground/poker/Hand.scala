@@ -1,6 +1,6 @@
 package playground.poker
 
-case class Hand(cards: List[Card]) {
+class Hand(val cards: List[Card]) extends Ordered[Hand] {
   override def toString = cards mkString " "
 
   val ranks =
@@ -17,18 +17,28 @@ case class Hand(cards: List[Card]) {
       .foldLeft(List((0, 0)))((acc, n) => (n, n - acc.head._1) :: acc)
       .map(_._2)
       .take(4)
-  val highCards = (cards map (card => HighCard(card.rank))).sortBy(_.rank).reverse//.map(_.asInstanceOf[Combination])
-
-  def combinations(): List[Combination] = Combination.best(this) match {
+  val highCards = (cards map (card => HighCard(card.rank))).sortBy(_.rank).reverse
+  val combinations: List[Combination] = Combination.best(this) match {
     case Some(c) => c :: highCards
     case None => highCards
+  }
+
+  def compare(that: Hand): Int = {
+    def compareCombinations(c1: List[Combination], c2: List[Combination]): Int = (c1, c2) match {
+      case (hd1 :: tl1, hd2 :: tl2) => hd1.compare(hd2) match {
+        case 0 => compareCombinations(tl1, tl2)
+        case i => i
+      }
+      case (_, _) => 0
+    }
+    compareCombinations(combinations, that.combinations)
   }
 }
 
 object Hand {
   def unapply(s: String): Option[Hand] = {
     ((s split " ").toList) match {
-      case Card(c1) :: Card(c2) :: Card(c3) :: Card(c4) :: Card(c5) :: _ => Some(Hand(List(c1, c2, c3, c4, c5)))
+      case Card(c1) :: Card(c2) :: Card(c3) :: Card(c4) :: Card(c5) :: _ => Some(new Hand(List(c1, c2, c3, c4, c5)))
       case _ => None
     }
   }
@@ -37,7 +47,7 @@ object Hand {
 object Hands {
   def unapplySeq(s: String): Option[Seq[Hand]] = {
     def getNext(cards: List[String]): List[Hand] = cards match {
-      case Card(c1) :: Card(c2) :: Card(c3) :: Card(c4) :: Card(c5) :: tl => Hand(List(c1, c2, c3, c4, c5)) :: getNext(tl)
+      case Card(c1) :: Card(c2) :: Card(c3) :: Card(c4) :: Card(c5) :: tl => new Hand(List(c1, c2, c3, c4, c5)) :: getNext(tl)
       case _ => Nil
     }
 

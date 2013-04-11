@@ -2,3 +2,6 @@ compile
 test
 exit
 compile
+run
+compile
+test

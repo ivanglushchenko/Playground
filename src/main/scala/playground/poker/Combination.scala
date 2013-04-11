@@ -18,16 +18,16 @@ trait Combination extends Ordered[Combination] {
   }
 }
 
-trait CombinationExtractor {
-  def unapply(hand: Hand): Option[Combination]
+trait CombinationFactory {
+  def get(hand: Hand): Option[Combination]
 }
 
 object Combination {
   val extractors = List(RoyalFlush, StraightFlush, FourOfKind, FullHouse, Flush, Straight, ThreeOfKind, TwoPairs, OnePair)
 
   def best(hand: Hand) = {
-    def loop(list: List[CombinationExtractor]): Option[Combination] = list match {
-      case hd :: tl => hd.unapply(hand) match {
+    def loop(list: List[CombinationFactory]): Option[Combination] = list match {
+      case hd :: tl => hd.get(hand) match {
         case Some(c) => Some(c)
         case None => loop(tl)
       }
@@ -53,8 +53,8 @@ case class OnePair(rank: Rank) extends Combination {
   def compareWithSameKind(c: OnePair): Int = rank.compare(c.rank)
 }
 
-object OnePair extends CombinationExtractor {
-  def unapply(hand: Hand): Option[Combination] = hand.ranks match {
+object OnePair extends CombinationFactory {
+  def get(hand: Hand): Option[Combination] = hand.ranks match {
     case List((r, 2), _*) => Some(OnePair(r))
     case _ => None
   }
@@ -68,8 +68,8 @@ case class TwoPairs(rank1: Rank, rank2: Rank) extends Combination {
   def compareWithSameKind(c: TwoPairs): Int = compareRanks(List((rank1, c.rank1), (rank2, c.rank2)))
 }
 
-object TwoPairs extends CombinationExtractor {
-  def unapply(hand: Hand): Option[Combination] = hand.ranks match {
+object TwoPairs extends CombinationFactory {
+  def get(hand: Hand): Option[Combination] = hand.ranks match {
     case List((r1, 2), (r2, 2), _*) => Some(TwoPairs(r1, r2))
     case _ => None
   }
@@ -83,8 +83,8 @@ case class ThreeOfKind(rank: Rank) extends Combination {
   def compareWithSameKind(c: ThreeOfKind): Int = rank.compare(c.rank)
 }
 
-object ThreeOfKind extends CombinationExtractor {
-  def unapply(hand: Hand): Option[Combination] = hand.ranks match {
+object ThreeOfKind extends CombinationFactory {
+  def get(hand: Hand): Option[Combination] = hand.ranks match {
     case List((r, 3), _*) => Some(ThreeOfKind(r))
     case _ => None
   }
@@ -98,8 +98,8 @@ case class Straight(rank: Rank) extends Combination {
   def compareWithSameKind(c: Straight): Int = rank.compare(c.rank)
 }
 
-object Straight extends CombinationExtractor {
-  def unapply(hand: Hand): Option[Combination] = hand.diffs match {
+object Straight extends CombinationFactory {
+  def get(hand: Hand): Option[Combination] = hand.diffs match {
     case List(1, 1, 1, 1) => Some(Straight(hand.highCards.head.rank))
     case _ => None
   }
@@ -113,9 +113,9 @@ case class Flush(rank: Rank) extends Combination {
   def compareWithSameKind(c: Flush): Int = rank.compare(c.rank)
 }
 
-case object Flush extends CombinationExtractor {
-  def unapply(hand: Hand): Option[Combination] = hand.suits match {
-    case List((r, i), _*) if i >= 4 => Some(Flush(hand.highCards.head.rank))
+case object Flush extends CombinationFactory {
+  def get(hand: Hand): Option[Combination] = hand.suits match {
+    case List((r, i), _*) if i >= 5 => Some(Flush(hand.highCards.head.rank))
     case _ => None
   }
 }
@@ -128,9 +128,9 @@ case class FullHouse(rank1: Rank, rank2: Rank) extends Combination {
   def compareWithSameKind(c: FullHouse): Int = compareRanks(List((rank1, c.rank1), (rank2, c.rank2)))
 }
 
-case object FullHouse extends CombinationExtractor {
-  def unapply(hand: Hand): Option[Combination] = hand.ranks match {
-    case List((r1, 3), (r2, 2), _*) => if (r1 > r2) Some(FullHouse(r1, r2)) else Some(FullHouse(r2, r1))
+case object FullHouse extends CombinationFactory {
+  def get(hand: Hand): Option[Combination] = hand.ranks match {
+    case List((r1, 3), (r2, 2), _*) => Some(FullHouse(r1, r2))
     case _ => None
   }
 }
@@ -143,8 +143,8 @@ case class FourOfKind(rank: Rank) extends Combination {
   def compareWithSameKind(c: FourOfKind): Int = rank.compare(c.rank)
 }
 
-object FourOfKind extends CombinationExtractor {
-  def unapply(hand: Hand): Option[Combination] = hand.ranks match {
+object FourOfKind extends CombinationFactory {
+  def get(hand: Hand): Option[Combination] = hand.ranks match {
     case List((r, 4), _*) => Some(FourOfKind(r))
     case _ => None
   }
@@ -158,9 +158,9 @@ case class StraightFlush(rank: Rank) extends Combination {
   def compareWithSameKind(c: StraightFlush): Int = rank.compare(c.rank)
 }
 
-object StraightFlush extends CombinationExtractor {
-  def unapply(hand: Hand): Option[Combination] = (hand.suits, hand.diffs) match {
-    case (List((r, i), _*), List(1, 1, 1, 1)) if i >= 4 => Some(StraightFlush(hand.highCards.head.rank))
+object StraightFlush extends CombinationFactory {
+  def get(hand: Hand): Option[Combination] = (hand.suits, hand.diffs) match {
+    case (List((r, i), _*), List(1, 1, 1, 1)) if i >= 5 => Some(StraightFlush(hand.highCards.head.rank))
     case _ => None
   }
 }
@@ -173,9 +173,9 @@ case class RoyalFlush() extends Combination {
   def compareWithSameKind(c: RoyalFlush): Int = 0
 }
 
-object RoyalFlush extends CombinationExtractor {
-  def unapply(hand: Hand): Option[Combination] = (hand.ranks, hand.suits, hand.diffs) match {
-    case (List((Ace, _), _*), List((_, i), _*), List(1, 1, 1, 1)) if i >= 4 => Some(RoyalFlush())
+object RoyalFlush extends CombinationFactory {
+  def get(hand: Hand): Option[Combination] = (hand.ranks, hand.suits, hand.diffs) match {
+    case (List((Ace, _), _*), List((_, i), _*), List(1, 1, 1, 1)) if i >= 5 => Some(RoyalFlush())
     case _ => None
   }
 }
