@@ -9,7 +9,7 @@ object Program extends App {
 
   def printComb(hand: String) {
     hand match {
-      case Hand(hand) => println(hand + ": " + hand.combinations.mkString(", ") + ",      " + hand.ranks)
+      case Hand(hand) => println(hand + ": " + hand.combinations.mkString(", "))
       case _ => println("?")
     }
   }

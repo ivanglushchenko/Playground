@@ -5,6 +5,8 @@ case class Card(rank: Rank, suit: Suit) {
 }
 
 object Card {
+  def unapply(a: Any): Option[Card] = None
+
   def unapply(str: String): Option[Card] = (str(0).toString, str(1).toString) match {
     case (Rank(r), Suit(s)) => Some(Card(r, s))
     case _ => None

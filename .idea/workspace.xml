@@ -11,9 +11,9 @@
     <file path="/TwitterAdapter.scala" changelist="34214634-dea5-462f-af4a-01d6792f53b6" time="1365454035954" ignored="false" />
     <file path="/Suit.scala" changelist="34214634-dea5-462f-af4a-01d6792f53b6" time="1365543953504" ignored="false" />
     <file path="/Rank.scala" changelist="34214634-dea5-462f-af4a-01d6792f53b6" time="1365625813841" ignored="false" />
-    <file path="/Card.scala" changelist="34214634-dea5-462f-af4a-01d6792f53b6" time="1365544019425" ignored="false" />
+    <file path="/Card.scala" changelist="34214634-dea5-462f-af4a-01d6792f53b6" time="1365638492908" ignored="false" />
     <file path="/Hand.scala" changelist="34214634-dea5-462f-af4a-01d6792f53b6" time="1365626451918" ignored="false" />
-    <file path="/Combination.scala" changelist="34214634-dea5-462f-af4a-01d6792f53b6" time="1365629437872" ignored="false" />
+    <file path="/Combination.scala" changelist="34214634-dea5-462f-af4a-01d6792f53b6" time="1365637945656" ignored="false" />
     <file path="/PokerSuite.scala" changelist="34214634-dea5-462f-af4a-01d6792f53b6" time="1365613081407" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -24,6 +24,7 @@
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CompilerWorkspaceConfiguration">
     <option name="USE_COMPILE_SERVER" value="false" />
+    <option name="MAKE_PROJECT_ON_SAVE" value="false" />
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
@@ -78,37 +79,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Program.scala" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="Program.scala" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/scala/playground/Program.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="29" column="12" selection-start="863" selection-end="863" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Combination.scala" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/scala/playground/poker/Combination.scala">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="18" selection-start="426" selection-end="437" vertical-scroll-proportion="0.032882012">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Rank.scala" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/scala/playground/poker/Rank.scala">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="34" column="0" selection-start="665" selection-end="665" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Card.scala" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/scala/playground/poker/Card.scala">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="0" selection-start="68" selection-end="68" vertical-scroll-proportion="0.0">
+            <state line="11" column="79" selection-start="279" selection-end="279" vertical-scroll-proportion="0.07751938">
               <folding />
             </state>
           </provider>
@@ -117,7 +91,16 @@
       <file leaf-file-name="Hand.scala" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/scala/playground/poker/Hand.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="11" selection-start="115" selection-end="120" vertical-scroll-proportion="0.0">
+            <state line="24" column="3" selection-start="842" selection-end="842" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Card.scala" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/scala/playground/poker/Card.scala">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="8" column="0" selection-start="177" selection-end="177" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -138,11 +121,11 @@
         <option value="$PROJECT_DIR$/src/main/scala/playground/adapters/Adapter.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/playground/adapters/TwitterAdapter.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/playground/poker/Suit.scala" />
-        <option value="$PROJECT_DIR$/src/main/scala/playground/poker/Card.scala" />
         <option value="$PROJECT_DIR$/src/test/scala/playground/PokerSuite.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/playground/poker/Rank.scala" />
-        <option value="$PROJECT_DIR$/src/main/scala/playground/poker/Hand.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/playground/poker/Combination.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/playground/poker/Hand.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/playground/poker/Card.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/playground/Program.scala" />
       </list>
     </option>
@@ -277,32 +260,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Rank.scala" />
-              <option name="myItemType" value="org.jetbrains.plugins.scala.components.ScalaDefsProjectViewProvider$ScalaFileTreeNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Playground" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Playground" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="playground" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="poker" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="Hand.scala" />
               <option name="myItemType" value="org.jetbrains.plugins.scala.components.ScalaDefsProjectViewProvider$ScalaFileTreeNode" />
             </PATH_ELEMENT>
@@ -340,14 +297,14 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="GoToFile.includeJavaFiles" value="false" />
-    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.proportion" value="0.15" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="MemberChooser.sorted" value="false" />
     <property name="options.lastSelected" value="project.propCompiler" />
     <property name="recentsLimit" value="5" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/scalatest_2.9.0-1.9.1.jar!/" />
+    <property name="last_opened_file_path" value="C:/Program Files/scala/lib/scala-reflect.jar!/" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
@@ -608,9 +565,9 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3298217" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.4136069" sideWeight="0.4996016" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="SBT Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.4127844" sideWeight="0.4996016" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32537788" sideWeight="0.60189575" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3293556" sideWeight="0.6710214" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -619,10 +576,11 @@
       <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24980111" sideWeight="0.6710214" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17343174" sideWeight="0.5863931" order="1" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1816092" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17291667" sideWeight="0.5872156" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.42036837" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
     </layout>
@@ -692,6 +650,27 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/main/scala/playground/poker/Rank.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="34" column="0" selection-start="665" selection-end="665" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/playground/poker/Card.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="0" selection-start="68" selection-end="68" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/playground/poker/Hand.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="11" selection-start="115" selection-end="120" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/playground/poker/Combination.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state line="18" column="16" selection-start="457" selection-end="457" vertical-scroll-proportion="0.0">
@@ -733,67 +712,44 @@
         <state line="13" column="0" selection-start="292" selection-end="292" vertical-scroll-proportion="0.4437751" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/scala/playground/PokerSuite.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="3" selection-start="274" selection-end="274" vertical-scroll-proportion="0.33188722">
-          <folding>
-            <element signature="e#20#45#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/scala/src/scala-library-src.jar!/scala/collection/LinearSeqOptimized.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="95" column="6" selection-start="2517" selection-end="2517" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/scala/src/scala-library-src.jar!/scala/collection/TraversableLike.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="63" column="0" selection-start="2989" selection-end="2989" vertical-scroll-proportion="-26.852678">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/scala/src/scala-library-src.jar!/scala/collection/SeqLike.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="563" column="72" selection-start="19095" selection-end="19124" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/playground/poker/Rank.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="0" selection-start="665" selection-end="665" vertical-scroll-proportion="0.0">
+        <state line="34" column="0" selection-start="665" selection-end="665" vertical-scroll-proportion="0.64437014">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/playground/poker/Card.scala">
+    <entry file="file://$PROJECT_DIR$/src/test/scala/playground/PokerSuite.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="0" selection-start="68" selection-end="68" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/playground/poker/Hand.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="11" selection-start="115" selection-end="120" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/playground/Program.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="12" selection-start="863" selection-end="863" vertical-scroll-proportion="0.0">
+        <state line="5" column="12" selection-start="89" selection-end="89" vertical-scroll-proportion="0.13359529">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/playground/poker/Combination.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="18" selection-start="426" selection-end="437" vertical-scroll-proportion="0.032882012">
+        <state line="27" column="7" selection-start="766" selection-end="766" vertical-scroll-proportion="0.90176815">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/playground/poker/Hand.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="3" selection-start="842" selection-end="842" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/playground/poker/Card.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="0" selection-start="177" selection-end="177" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/playground/Program.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="79" selection-start="279" selection-end="279" vertical-scroll-proportion="0.07751938">
           <folding />
         </state>
       </provider>
@@ -850,12 +806,11 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
-          <last-edited>Playground</last-edited>
+          <last-edited>Scala|Playground</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
                 <option value="0.2" />
-                <option value="0.5" />
               </list>
             </option>
           </splitter-proportions>
@@ -863,7 +818,7 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
-          <last-edited>scalatest_2.9.0-1.9.1</last-edited>
+          <last-edited>scala-compiler</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
