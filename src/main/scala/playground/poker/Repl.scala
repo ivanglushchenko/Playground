@@ -1,25 +1,25 @@
 package playground.poker
 
-object Repl {
-  def read() = Console.readLine("what's your hand? >> ")
+import java.util.Calendar
+import java.text.SimpleDateFormat
 
-  def eval(input: String): Option[String] = ReplInput.parseCmd(input) match {
-    case Some(ExitCommand) => None
-    case Some(HandCommand(hand)) => {
-      Some("hand is: " + hand + ", best combo is: " + hand.combinations.head)
-    }
-    case _ => Some("do it again, please")
+object Repl {
+  def read() = {
+    val today = Calendar.getInstance().getTime()
+    val prompt = new SimpleDateFormat("hh").format(today) + ":" + new SimpleDateFormat("mm").format(today) + " >> "
+    ReplInput.parseCmd(Console.readLine(prompt))
   }
 
-  def print(s: String) = println(s)
-
-  def loop() {
-    eval(read()) match {
-      case Some(s) => {
-        print(s)
-        loop()
+  def loop(env: Environment) {
+    read() match {
+      case Some(command) => command(env) match {
+        case Some(newEnv) => loop(newEnv)
+        case None => ()
       }
-      case _ => print("Thanks for all the fish")
+      case None => {
+        println("! command is not recognized")
+        loop(env)
+      }
     }
   }
 }

@@ -20,10 +20,12 @@ trait Combination extends Ordered[Combination] {
 
 trait CombinationFactory {
   def get(hand: Hand): Option[Combination]
+  def outs(hand: Hand): List[Card] = List()
+  def prob(hand: Hand): Double = 0.0
 }
 
 object Combination {
-  val extractors = List(RoyalFlush, StraightFlush, FourOfKind, FullHouse, Flush, Straight, ThreeOfKind, TwoPairs, OnePair)
+  val factories = List(RoyalFlush, StraightFlush, FourOfKind, FullHouse, Flush, Straight, ThreeOfKind, TwoPairs, OnePair)
 
   def best(hand: Hand) = {
     def loop(list: List[CombinationFactory]): Option[Combination] = list match {
@@ -33,7 +35,7 @@ object Combination {
       }
       case Nil => None
     }
-    loop(extractors)
+    loop(factories)
   }
 }
 
@@ -58,6 +60,11 @@ object OnePair extends CombinationFactory {
     case List((r, 2), _*) => Some(OnePair(r))
     case _ => None
   }
+
+  override def outs(hand: Hand) =
+    (for (card <- hand.cards; suit <- Suit allExcept card.suit) yield new Card(card.rank, suit)).distinct
+
+  override def prob(hand: Hand) = outs(hand).length.toDouble / (52.0 - hand.cards.length)
 }
 
 case class TwoPairs(rank1: Rank, rank2: Rank) extends Combination {
@@ -106,7 +113,7 @@ object Straight extends CombinationFactory {
 }
 
 case class Flush(rank: Rank) extends Combination {
-  override def toString = "Flush" + rank
+  override def toString = "Flush " + rank
 
   val value = 5
   type CombinationType = Flush

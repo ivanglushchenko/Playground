@@ -21,4 +21,6 @@ object Suit {
     case "S" => Some(Spades)
     case "C" => Some(Clubs)
   }
+
+  def allExcept(suit: Suit): List[Suit] = List(Hearts, Diamonds, Spades, Clubs).filterNot(_ == suit)
 }
