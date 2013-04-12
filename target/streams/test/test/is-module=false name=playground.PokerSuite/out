@@ -1,4 +1,4 @@
 [0m[[0minfo[0m] [0m[32mPokerSuite:[0m[0m
 [0m[[0minfo[0m] [0m[32m- test ranks[0m[0m
-[0m[[0minfo[0m] [0m[31m- compare hands *** FAILED ***[0m[0m
-[0m[[0minfo[0m] [0m[31m  383 did not equal 376 (PokerSuite.scala:19)[0m[0m
+[0m[[0minfo[0m] [0m[32m- compare hands[0m[0m
+[0m[[0minfo[0m] [0m[32m- compare best combinations[0m[0m

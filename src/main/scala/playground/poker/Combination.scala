@@ -106,7 +106,7 @@ object Straight extends CombinationFactory {
 }
 
 case class Flush(rank: Rank) extends Combination {
-  override def toString = "Flush"
+  override def toString = "Flush" + rank
 
   val value = 5
   type CombinationType = Flush

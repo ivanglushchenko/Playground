@@ -15,7 +15,7 @@ case object Clubs extends Suit {
 }
 
 object Suit {
-  def unapply(s: String): Option[Suit] = s match {
+  def unapply(s: String): Option[Suit] = s.toUpperCase match {
     case "H" => Some(Hearts)
     case "D" => Some(Diamonds)
     case "S" => Some(Spades)
