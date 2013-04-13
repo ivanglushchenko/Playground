@@ -22,6 +22,13 @@ trait CombinationFactory {
   def get(hand: Hand): Option[Combination]
   def outs(hand: Hand): List[Card] = List()
   def prob(hand: Hand): Double = 0.0
+
+  def choose(n: Int, k: Int) = (BigInt(n - k + 1) to n).product / (BigInt(1) to k).product
+
+  def myProb(env: Environment): Double = get(env.myFullHand) match {
+    case Some(c) => 1.0
+    case None => prob(env.myFullHand)
+  }
 }
 
 object Combination {
@@ -56,6 +63,8 @@ case class OnePair(rank: Rank) extends Combination {
 }
 
 object OnePair extends CombinationFactory {
+  override def toString = "OnePair"
+
   def get(hand: Hand): Option[Combination] = hand.ranks match {
     case List((r, 2), _*) => Some(OnePair(r))
     case _ => None
@@ -64,7 +73,16 @@ object OnePair extends CombinationFactory {
   override def outs(hand: Hand) =
     (for (card <- hand.cards; suit <- Suit allExcept card.suit) yield new Card(card.rank, suit)).distinct
 
-  override def prob(hand: Hand) = outs(hand).length.toDouble / (52.0 - hand.cards.length)
+  override def prob(hand: Hand) = {
+    val cardsLeft = 52 - hand.cards.length
+    val cardsToGo = 7 - hand.cards.length
+    val numOfOuts = outs(hand).length
+    val oddsAllHands = choose(cardsLeft, cardsToGo)
+    val aaa = oddsAllHands.toString
+    val oddsNotOut = choose(cardsLeft - numOfOuts, cardsToGo)
+    val oddsOut = oddsAllHands - oddsNotOut
+    oddsOut.toDouble / oddsAllHands.toDouble
+  }
 }
 
 case class TwoPairs(rank1: Rank, rank2: Rank) extends Combination {
