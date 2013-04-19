@@ -1,6 +1,6 @@
 package playground.poker
 
-class Card(val rank: Rank, val suit: Suit) {
+case class Card(val rank: Rank, val suit: Suit) {
   override def toString() = rank.toString + suit
 }
 

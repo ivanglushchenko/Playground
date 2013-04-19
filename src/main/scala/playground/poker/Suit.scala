@@ -23,4 +23,6 @@ object Suit {
   }
 
   def allExcept(suit: Suit): List[Suit] = List(Hearts, Diamonds, Spades, Clubs).filterNot(_ == suit)
+
+  val All = Array(Hearts, Diamonds, Spades, Clubs)
 }

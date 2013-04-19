@@ -20,27 +20,19 @@ trait Combination extends Ordered[Combination] {
 
 trait CombinationFactory {
   def get(hand: Hand): Option[Combination]
-  def outs(hand: Hand): List[Card] = List()
-  def prob(hand: Hand): Double = 0.0
-
   def choose(n: Int, k: Int) = (BigInt(n - k + 1) to n).product / (BigInt(1) to k).product
-
-  def myProb(env: Environment): Double = get(env.myFullHand) match {
-    case Some(c) => 1.0
-    case None => prob(env.myFullHand)
-  }
 }
 
 object Combination {
-  val factories = List(RoyalFlush, StraightFlush, FourOfKind, FullHouse, Flush, Straight, ThreeOfKind, TwoPairs, OnePair)
+  val factories = List(RoyalFlush, StraightFlush, FourOfKind, FullHouse, Flush, Straight, ThreeOfKind, TwoPairs, OnePair, HighCard)
 
   def best(hand: Hand) = {
-    def loop(list: List[CombinationFactory]): Option[Combination] = list match {
+    def loop(list: List[CombinationFactory]): Combination = list match {
       case hd :: tl => hd.get(hand) match {
-        case Some(c) => Some(c)
+        case Some(c) => c
         case None => loop(tl)
       }
-      case Nil => None
+      case Nil => throw new Exception
     }
     loop(factories)
   }
@@ -54,6 +46,12 @@ case class HighCard(rank: Rank) extends Combination {
   def compareWithSameKind(c: HighCard): Int = rank.compare(c.rank)
 }
 
+object HighCard extends CombinationFactory {
+  override def toString = "High card"
+
+  def get(hand: Hand): Option[Combination] = Some(HighCard(hand.ranks.head._1))
+}
+
 case class OnePair(rank: Rank) extends Combination {
   override def toString = "Pair of " + rank
 
@@ -63,25 +61,11 @@ case class OnePair(rank: Rank) extends Combination {
 }
 
 object OnePair extends CombinationFactory {
-  override def toString = "OnePair"
+  override def toString = "One pair"
 
   def get(hand: Hand): Option[Combination] = hand.ranks match {
     case List((r, 2), _*) => Some(OnePair(r))
     case _ => None
-  }
-
-  override def outs(hand: Hand) =
-    (for (card <- hand.cards; suit <- Suit allExcept card.suit) yield new Card(card.rank, suit)).distinct
-
-  override def prob(hand: Hand) = {
-    val cardsLeft = 52 - hand.cards.length
-    val cardsToGo = 7 - hand.cards.length
-    val numOfOuts = outs(hand).length
-    val oddsAllHands = choose(cardsLeft, cardsToGo)
-    val aaa = oddsAllHands.toString
-    val oddsNotOut = choose(cardsLeft - numOfOuts, cardsToGo)
-    val oddsOut = oddsAllHands - oddsNotOut
-    oddsOut.toDouble / oddsAllHands.toDouble
   }
 }
 
@@ -94,6 +78,8 @@ case class TwoPairs(rank1: Rank, rank2: Rank) extends Combination {
 }
 
 object TwoPairs extends CombinationFactory {
+  override def toString = "Two pairs"
+
   def get(hand: Hand): Option[Combination] = hand.ranks match {
     case List((r1, 2), (r2, 2), _*) => Some(TwoPairs(r1, r2))
     case _ => None
@@ -109,6 +95,8 @@ case class ThreeOfKind(rank: Rank) extends Combination {
 }
 
 object ThreeOfKind extends CombinationFactory {
+  override def toString = "Three"
+
   def get(hand: Hand): Option[Combination] = hand.ranks match {
     case List((r, 3), _*) => Some(ThreeOfKind(r))
     case _ => None
@@ -124,9 +112,11 @@ case class Straight(rank: Rank) extends Combination {
 }
 
 object Straight extends CombinationFactory {
-  def get(hand: Hand): Option[Combination] = hand.diffs match {
-    case List(1, 1, 1, 1) => Some(Straight(hand.highCards.head.rank))
-    case _ => None
+  override def toString = "Straight"
+
+  def get(hand: Hand): Option[Combination] = hand.straight match {
+    case Some(r) => Some(r._1)
+    case None => None
   }
 }
 
@@ -139,6 +129,8 @@ case class Flush(rank: Rank) extends Combination {
 }
 
 case object Flush extends CombinationFactory {
+  override def toString = "Flush"
+
   def get(hand: Hand): Option[Combination] = hand.suits match {
     case List((r, i), _*) if i >= 5 => Some(Flush(hand.highCards.head.rank))
     case _ => None
@@ -154,6 +146,8 @@ case class FullHouse(rank1: Rank, rank2: Rank) extends Combination {
 }
 
 case object FullHouse extends CombinationFactory {
+  override def toString = "Full house"
+
   def get(hand: Hand): Option[Combination] = hand.ranks match {
     case List((r1, 3), (r2, 2), _*) => Some(FullHouse(r1, r2))
     case _ => None
@@ -169,6 +163,8 @@ case class FourOfKind(rank: Rank) extends Combination {
 }
 
 object FourOfKind extends CombinationFactory {
+  override def toString = "Four"
+
   def get(hand: Hand): Option[Combination] = hand.ranks match {
     case List((r, 4), _*) => Some(FourOfKind(r))
     case _ => None
@@ -184,8 +180,9 @@ case class StraightFlush(rank: Rank) extends Combination {
 }
 
 object StraightFlush extends CombinationFactory {
-  def get(hand: Hand): Option[Combination] = (hand.suits, hand.diffs) match {
-    case (List((r, i), _*), List(1, 1, 1, 1)) if i >= 5 => Some(StraightFlush(hand.highCards.head.rank))
+  override def toString = "Straight flush"
+  def get(hand: Hand): Option[Combination] = hand.straight match {
+    case Some(s) if s._2 == true => Some(s._1)
     case _ => None
   }
 }
@@ -199,8 +196,10 @@ case class RoyalFlush() extends Combination {
 }
 
 object RoyalFlush extends CombinationFactory {
-  def get(hand: Hand): Option[Combination] = (hand.ranks, hand.suits, hand.diffs) match {
-    case (List((Ace, _), _*), List((_, i), _*), List(1, 1, 1, 1)) if i >= 5 => Some(RoyalFlush())
+  override def toString = "Royal flush"
+
+  def get(hand: Hand): Option[Combination] = hand.straight match {
+    case Some(s) if s._2 == true && s._1 == Ace => Some(RoyalFlush())
     case _ => None
   }
 }

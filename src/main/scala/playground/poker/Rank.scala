@@ -41,4 +41,6 @@ object Rank {
     case "T" => Some(NumRank(10))
     case n => Some(NumRank(n.toInt))
   }
+
+  val All = (for (i <- 2 to 10) yield NumRank(i)).toArray ++ Array(Jack, Queen, King, Ace)
 }
