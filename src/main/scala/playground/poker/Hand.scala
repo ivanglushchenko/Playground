@@ -37,7 +37,7 @@ case class Hand(val cards: List[Card]) extends Ordered[Hand] {
         case hd :: tl => getFlush(hd, tl, 0, highest)
         case _ => if (length >= 5) Some(highest) else None
       }
-      getFlush(sortedLongestSeq.head, sortedLongestSeq.tail, 0, Ace) match {
+      getFlush(sortedLongestSeq.head, sortedLongestSeq.tail, 1, sortedLongestSeq.head.rank) match {
         case Some(r) => Some(Straight(r), true)
         case None => Some(Straight(sortedLongestSeq.head.rank), false)
       }
@@ -60,17 +60,28 @@ case class Hand(val cards: List[Card]) extends Ordered[Hand] {
 }
 
 object Hand {
-  def unapply(s: String): Option[Hand] = {
-    ((s split " ").toList) match {
-      case Card(c1) :: Card(c2) :: Card(c3) :: Card(c4) :: Card(c5) :: _ => Some(new Hand(List(c1, c2, c3, c4, c5)))
-      case _ => None
-    }
-  }
+  def parse(str: String) = ReplInput parseHand str
+  //: Option[Hand] = {
+  //  ((s split " ").toList) match {
+  //    case Card(c1) :: Card(c2) :: Card(c3) :: Card(c4) :: Card(c5) :: _ => Some(new Hand(List(c1, c2, c3, c4, c5)))
+  //    case _ => None
+  //  }
+  //}
 }
 
 object Hands {
-  def unapplySeq(s: String): Option[Seq[Hand]] = {
-    def getNext(cards: List[String]): List[Hand] = cards match {
+  def parse(str: String): Option[List[Hand]] = {
+    Hand parse str match {
+      case Some(h) => Some(List(Hand(h.cards take 5), Hand(h.cards drop 5)))
+      case None => None
+    }
+  }
+    /*
+    def getNext(cards: List[String]): List[Hand] = {
+    }
+  }
+
+      cards match {
       case Card(c1) :: Card(c2) :: Card(c3) :: Card(c4) :: Card(c5) :: tl => new Hand(List(c1, c2, c3, c4, c5)) :: getNext(tl)
       case _ => Nil
     }
@@ -79,5 +90,7 @@ object Hands {
       case hd :: nk :: tl => Some(hd :: nk :: tl)
       case _ => None
     }
+
   }
+  */
 }

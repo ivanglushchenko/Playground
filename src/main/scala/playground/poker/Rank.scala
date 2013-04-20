@@ -33,7 +33,7 @@ case class NumRank(value: Int) extends Rank {
 object Rank {
   implicit def rankToInt(rank: Rank): Int = rank.value
 
-  def unapply(s: String): Option[Rank] = s.toUpperCase match {
+  def parse(s: String): Option[Rank] = s.toUpperCase match {
     case "A" => Some(Ace)
     case "K" => Some(King)
     case "Q" => Some(Queen)

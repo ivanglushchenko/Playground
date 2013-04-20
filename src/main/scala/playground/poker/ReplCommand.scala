@@ -73,3 +73,18 @@ case class AddOpenCardCommand(card: Card) extends ReplCommand {
     Some(newEnv)
   }
 }
+
+case object TestCommand extends ReplCommand {
+  override def apply(env: Environment) = {
+    def getBestComb(str: String) = Hand parse str match {
+      case Some(hand) => hand.combinations.head
+      case None =>
+        println("failed to parse str " + str)
+        throw new Exception
+    }
+    val hand = Hand parse "6D 7D TD 8D 9D" get
+    val strght = hand.straight
+    val best = Combination best hand
+    Some(env)
+  }
+}

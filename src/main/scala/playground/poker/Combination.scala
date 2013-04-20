@@ -182,7 +182,7 @@ case class StraightFlush(rank: Rank) extends Combination {
 object StraightFlush extends CombinationFactory {
   override def toString = "Straight flush"
   def get(hand: Hand): Option[Combination] = hand.straight match {
-    case Some(s) if s._2 == true => Some(s._1)
+    case Some(s) if s._2 == true => Some(StraightFlush(s._1.rank))
     case _ => None
   }
 }
@@ -199,7 +199,7 @@ object RoyalFlush extends CombinationFactory {
   override def toString = "Royal flush"
 
   def get(hand: Hand): Option[Combination] = hand.straight match {
-    case Some(s) if s._2 == true && s._1 == Ace => Some(RoyalFlush())
+    case Some(s) if s._2 == true && s._1.rank == Ace => Some(RoyalFlush())
     case _ => None
   }
 }

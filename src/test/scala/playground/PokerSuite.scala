@@ -7,21 +7,30 @@ import java.io._
 
 class PokerSuite extends FunSuite {
   test("test ranks") {
-    val hand = Hand.unapply("7D 2S 5D 7S AC").get
+    val hand = Hand.parse("7D 2S 5D 7S AC").get
     assert(hand.ranks === List((NumRank(7), 2), (Ace, 1), (NumRank(5), 1), (NumRank(2), 1)))
   }
 
   test("compare hands") {
     val fileName = new File(".").getCanonicalPath() + "\\src\\test\\scala\\playground\\PokerHands.txt"
-    val winningHands = Source.fromFile(fileName).getLines().map(_ match {
-      case Hands(hand1, hand2, _*) => if (hand1 > hand2) 1 else 0
+    val rawLines = (Source fromFile fileName getLines).toList
+    val lines = rawLines.head.substring(3) :: rawLines.tail
+    println(lines.head)
+    val winningHands = lines.map(str => Hands parse str match {
+      case Some(List(hand1, hand2, _*)) => if (hand1 > hand2) 1 else 0
+      case None =>
+        println("failed to parse str " + str)
+        throw new Exception
     }).sum
     assert(winningHands === 376)
   }
 
   test("compare best combinations") {
-    def getBestComb(hand: String) = hand match {
-        case Hand(hand) => hand.combinations.head
+    def getBestComb(str: String) = Hand parse str match {
+        case Some(hand) => hand.combinations.head
+        case None =>
+          println("failed to parse str " + str)
+          throw new Exception
     }
 
     assert(getBestComb("7D 2S 5D 3S AC") === HighCard(Ace))

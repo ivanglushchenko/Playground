@@ -49,7 +49,7 @@ class Simulator(myCards: List[Card], remainingCards: Array[Card]) extends Actor 
         cards => {
           val fullHand = Hand(myCards ::: cards)
           val bestComb = Combination.best(fullHand)
-          combinations(bestComb.value) = combinations(bestComb.value) + 1
+          combinations(bestComb.value) += 1
         }
       }
       //println("done for " + range + ", " + combinations.sum)
