@@ -6,7 +6,7 @@ object Stopwatch {
     print(caption + "...")
     action
 
-    val dt = System.currentTimeMillis - startTime
-    println("done in " + dt)
+    val dt = (System.currentTimeMillis - startTime).toDouble / 1000.0
+    println("done in " + dt + "s")
   }
 }

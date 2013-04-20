@@ -1,9 +1,20 @@
 package playground.poker
 
-import scala.actors.Actor
-
 abstract sealed class ReplCommand {
   def apply(env: Environment): Option[Environment] = Some(env)
+}
+
+case class MultiCommand(commands: List[ReplCommand]) extends ReplCommand {
+  override def apply(env: Environment) = {
+    def execNext(commands: List[ReplCommand], env: Environment): Option[Environment] = commands match {
+      case hd :: tl => hd(env) match {
+        case Some(newEnv) => execNext(tl, newEnv)
+        case None => None
+      }
+      case _ => Some(env)
+    }
+    execNext(commands, env)
+  }
 }
 
 case object ExitCommand extends ReplCommand {
@@ -20,10 +31,10 @@ case object HelpCommand extends ReplCommand  {
   }
 }
 
-case class AddHandCommand(name: String, hand: Hand) extends ReplCommand {
+case class SetHandCommand(name: String, hand: Hand) extends ReplCommand {
   override def apply(env: Environment) = {
     val newEnv = env + (name -> hand)
-    println("hands: " + newEnv.hands)
+    println("hands: " + newEnv.hands.map(_._2).mkString(", "))
     Some(newEnv)
   }
 }
@@ -38,25 +49,18 @@ case object AskHandCommand extends ReplCommand {
 
 case object ProbabilityCommand extends ReplCommand {
   override def apply(env: Environment) = {
-    val combinations: Array[Int] = Array.ofDim(Combination.factories.length)
-
-    val dispatcher = new Dispatcher(env.myHand.cards, env.deck.cards.toArray, 1)
-
-    Stopwatch.measure("enum hands") {
-      Permutations.foreach(env.deck.cards.toArray, 5) {
-        cards => {
-          val fullHand = Hand(env.myHand.cards ::: cards)
-          //val bestComb = Combination.best(fullHand)
-          //combinations(bestComb.value) = combinations(bestComb.value) + 1
-        }
-      }
+    val sim = new Simulator(env.myFullHand.cards, env.deck.cards.toArray)
+    sim.start()
+    sim !? MsgAllDone match {
+      case combinations: Array[Int] =>
+        val count = combinations.sum
+        def toProb(c: Int): Double = (c.toDouble * 10000.0 / count.toDouble).toInt / 100.0
+        def toName(i: Int): String = Combination.factories(Combination.factories.length - i - 1).toString
+        for (t <- 0 until Combination.factories.length)
+          println("  " + toName(t) + " -> " + toProb(combinations(t)) + "%")
+      case _ =>
+        println("Unknown result")
     }
-
-    val count = combinations.sum
-    def toProb(c: Int): Double = (c.toDouble * 10000.0 / count.toDouble).toInt / 100.0
-    def toName(i: Int): String = Combination.factories(Combination.factories.length - i - 1).toString
-    for (t <- 0 until Combination.factories.length)
-      println("  " + toName(t) + " -> " + toProb(combinations(t)) + "%")
 
     Some(env)
   }

@@ -12,8 +12,8 @@ object ReplInput extends RegexParsers {
   // Commands
   val exit: Parser[ReplCommand] = "exit" ^^ { _ => ExitCommand }
   val about: Parser[ReplCommand] = "help" ^^ { _ => HelpCommand }
-  val prob: Parser[ReplCommand] = "prob" ~ opt("?") ^^ { _ => ProbabilityCommand }
-  val addHand: Parser[ReplCommand] = "hand" ~> "[1-9]?".r ~ hand ^^ { case name ~ hand => AddHandCommand(name, hand) }
+  val prob: Parser[ReplCommand] = "prob" ~ opt("?") ^^ { _ => ProbabilityCommand } | "?" ^^ { _ => ProbabilityCommand }
+  val setHand: Parser[ReplCommand] = "hand" ~> "[1-9]?".r ~ hand ^^ { case name ~ hand => SetHandCommand(name, hand) }
   val askHand: Parser[ReplCommand] = "hand?" ^^ { _ => AskHandCommand }
   val addOpenCard: Parser[ReplCommand] = "+" ~> card ^^ { AddOpenCardCommand(_) }
 
@@ -21,10 +21,13 @@ object ReplInput extends RegexParsers {
       exit
       | about
       | prob
-      | addHand
+      | setHand
       | askHand
       | addOpenCard
-      | hand ^^ { x => AddHandCommand("", x) })
+      | hand ~ opt("?") ^^ { case x ~ q => q match {
+        case None => SetHandCommand("", x)
+        case _ => MultiCommand(List(SetHandCommand("", x), ProbabilityCommand))
+      } })
 
   def parseHand(line: String): Option[Hand] = parseAll(hand, line) match {
     case Success(t, _) => Some(t)

@@ -2,7 +2,7 @@ package playground.poker
 
 case class Deck(val cards: List[Card]) {
   def -(card: Card) = Deck(cards.filterNot(_ == card))
-  def -(hand: Hand) = Deck(cards.filterNot(c => hand.cards.contains(c)))
+  def -(exc: List[Card]) = Deck(cards.filterNot(c => exc.contains(c)))
 }
 
 object Deck {

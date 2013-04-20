@@ -17,4 +17,13 @@ object Permutations {
       } proc(List(cards(i), cards(j), cards(k), cards(l), cards(m)))
     case _ => throw new Exception
   }
+
+  def foreach(cards: Array[Card], k: Int, fromIndex: Int, toIndex: Int)(proc: List[Card] => Unit): Unit =
+      for {
+        i <- fromIndex until toIndex
+        j <- i + 1 until cards.length - 3
+        k <- j + 1 until cards.length - 2
+        l <- k + 1 until cards.length - 1
+        m <- l + 1 until cards.length
+      } proc(List(cards(i), cards(j), cards(k), cards(l), cards(m)))
 }

@@ -7,18 +7,19 @@ trait Environment {
   def +(hand: (String, Hand)): Environment
   def +(card: Card): Environment
 
-  def myHand = hands("")
-  def myFullHand = extend(hands(""))
+  def myHand = if (hands.contains("")) hands("") else Hand(List())
+  def myFullHand = extend(myHand)
   def extend(hand: Hand) = new Hand(hand.cards ::: openCards)
   def extHands() = hands.toList.map(t => (t._1, extend(t._2)))
 }
 
 object Environment {
-  def apply(): Environment = new EnvironmentImpl(Deck.Full52, Map(), List())
+  def apply(): Environment = new EnvironmentImpl(Map(), List())
 
-  private class EnvironmentImpl(val deck: Deck, val hands: Map[String, Hand], val openCards: List[Card]) extends Environment {
-    def +(hand: (String, Hand)): Environment = new EnvironmentImpl(deck - hand._2, hands + hand, openCards)
-    def +(card: Card): Environment = new EnvironmentImpl(deck - card, hands, card :: openCards)
+  private class EnvironmentImpl(val hands: Map[String, Hand], val openCards: List[Card]) extends Environment {
+    val deck = Deck.Full52 - (hands.flatMap(_._2.cards).toList ::: openCards)
+    def +(hand: (String, Hand)): Environment = new EnvironmentImpl(hands + hand, openCards)
+    def +(card: Card): Environment = new EnvironmentImpl(hands, card :: openCards)
   }
 }
 
