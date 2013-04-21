@@ -15,10 +15,9 @@ class PokerSuite extends FunSuite {
     val fileName = new File(".").getCanonicalPath() + "\\src\\test\\scala\\playground\\PokerHands.txt"
     val rawLines = (Source fromFile fileName getLines).toList
     val lines = rawLines.head.substring(3) :: rawLines.tail
-    println(lines.head)
     val winningHands = lines.map(str => Hands parse str match {
       case Some(List(hand1, hand2, _*)) => if (hand1 > hand2) 1 else 0
-      case None =>
+      case _ =>
         println("failed to parse str " + str)
         throw new Exception
     }).sum
@@ -44,5 +43,6 @@ class PokerSuite extends FunSuite {
     assert(getBestComb("2D 2S 2D 7S 2C") === FourOfKind(NumRank(2)))
     assert(getBestComb("6D 7D TD 8D 9D") === StraightFlush(NumRank(10)))
     assert(getBestComb("QD KD TD AD JD") === RoyalFlush())
+    assert(getBestComb("AD 2C 3D 4D 5D") === Straight(NumRank(5)))
   }
 }

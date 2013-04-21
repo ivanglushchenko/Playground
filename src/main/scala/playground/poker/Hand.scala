@@ -10,7 +10,7 @@ case class Hand(val cards: List[Card]) extends Ordered[Hand] {
       .sortWith((r1, r2) => r1._2.compareTo(r2._2) < 0)
       .reverse
 
-  lazy val suits = cards.groupBy(_.suit).toList.map(p => (p._1, p._2.length)).sortBy(p => p._2).reverse
+  lazy val suits = cards.groupBy(_.suit).toList.map(p => (p._1, p._2.length)).sortBy(p => -p._2)
 
   lazy val straight = if (cards.length < 5) None else {
     val sortedCards = cards.sortBy(_.rank).reverse
@@ -23,14 +23,33 @@ case class Hand(val cards: List[Card]) extends Ordered[Hand] {
       else sortedCards
 
     def getLongest(prevCard: Card, nextCards: List[Card], acc: List[Card]): List[Card] = nextCards match {
-      case hd :: tl => if (isConn(prevCard, hd)) getLongest(hd, tl, hd :: acc) else acc
+      case hd :: tl =>
+        if (isConn(prevCard, hd)) getLongest(hd, tl, hd :: acc)
+        else if (prevCard.rank == hd.rank) getLongest(hd, tl, acc)
+        else acc
       case _ => acc
     }
 
-    val longestSeq = getLongest(startPoint.head, startPoint.tail, List(startPoint.head))
+    val longestSeqWithoutWheel = getLongest(startPoint.head, startPoint.tail, List(startPoint.head))
+    val longestSeq =
+      if (longestSeqWithoutWheel.size >= 4 && longestSeqWithoutWheel.head.rank == NumRank(2) && sortedCards.head.rank == Ace) sortedCards.head :: longestSeqWithoutWheel
+      else longestSeqWithoutWheel
+
     if (longestSeq.size < 5) None
     else {
       val sortedLongestSeq = longestSeq.reverse
+
+      if (suits.head._2 >= 5) {
+        val candidateSuit = suits.head._1
+        def checkFlush(prevCard: Card, nextCards: List[Card], length: Int, highest: Rank): Option[Rank] = nextCards match {
+          case hd :: tl if prevCard.suit == hd.suit =>
+            getFlush(hd, tl, length + 1, if (length == 0) prevCard.rank else highest)
+          case hd :: tl => getFlush(hd, tl, 0, highest)
+          case _ => if (length >= 5) Some(highest) else None
+        }
+
+      } else Some(Straight(sortedLongestSeq.head.rank), false)
+
       def getFlush(prevCard: Card, nextCards: List[Card], length: Int, highest: Rank): Option[Rank] = nextCards match {
         case hd :: tl if prevCard.suit == hd.suit =>
           getFlush(hd, tl, length + 1, if (length == 0) prevCard.rank else highest)
@@ -61,12 +80,6 @@ case class Hand(val cards: List[Card]) extends Ordered[Hand] {
 
 object Hand {
   def parse(str: String) = ReplInput parseHand str
-  //: Option[Hand] = {
-  //  ((s split " ").toList) match {
-  //    case Card(c1) :: Card(c2) :: Card(c3) :: Card(c4) :: Card(c5) :: _ => Some(new Hand(List(c1, c2, c3, c4, c5)))
-  //    case _ => None
-  //  }
-  //}
 }
 
 object Hands {
@@ -76,21 +89,4 @@ object Hands {
       case None => None
     }
   }
-    /*
-    def getNext(cards: List[String]): List[Hand] = {
-    }
-  }
-
-      cards match {
-      case Card(c1) :: Card(c2) :: Card(c3) :: Card(c4) :: Card(c5) :: tl => new Hand(List(c1, c2, c3, c4, c5)) :: getNext(tl)
-      case _ => Nil
-    }
-
-    getNext((s split " ").toList) match {
-      case hd :: nk :: tl => Some(hd :: nk :: tl)
-      case _ => None
-    }
-
-  }
-  */
 }

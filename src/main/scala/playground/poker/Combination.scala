@@ -20,7 +20,6 @@ trait Combination extends Ordered[Combination] {
 
 trait CombinationFactory {
   def get(hand: Hand): Option[Combination]
-  def choose(n: Int, k: Int) = (BigInt(n - k + 1) to n).product / (BigInt(1) to k).product
 }
 
 object Combination {
@@ -132,7 +131,7 @@ case object Flush extends CombinationFactory {
   override def toString = "Flush"
 
   def get(hand: Hand): Option[Combination] = hand.suits match {
-    case List((r, i), _*) if i >= 5 => Some(Flush(hand.highCards.head.rank))
+    case List((_, i), _*) if i >= 5 => Some(Flush(hand.highCards.head.rank))
     case _ => None
   }
 }
@@ -149,7 +148,7 @@ case object FullHouse extends CombinationFactory {
   override def toString = "Full house"
 
   def get(hand: Hand): Option[Combination] = hand.ranks match {
-    case List((r1, 3), (r2, 2), _*) => Some(FullHouse(r1, r2))
+    case List((r1, 3), (r2, i), _*) if i >= 2 => Some(FullHouse(r1, r2))
     case _ => None
   }
 }

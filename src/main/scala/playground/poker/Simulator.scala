@@ -16,7 +16,7 @@ class Simulator(myCards: List[Card], remainingCards: Array[Card]) extends Actor 
   def act() {
     val combinations = Array.ofDim[Int](Combination.factories.length)
     val cardsToDraw = 7 - myCards.length
-    val ranges = toRanges(Four, remainingCards.length - cardsToDraw + 1)
+    val ranges = toRanges(Eight, remainingCards.length - cardsToDraw + 1)
 
     Stopwatch.measure("sim hands for " + myCards.mkString(" ")) {
       for (range <- ranges) new Worker(this, cardsToDraw, range)

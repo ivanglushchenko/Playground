@@ -41,8 +41,8 @@ case class SetHandCommand(name: String, hand: Hand) extends ReplCommand {
 
 case object AskHandCommand extends ReplCommand {
   override def apply(env: Environment) = {
-    println("raw hands: " + env.hands)
-    println("ext hands: " + env.extHands())
+    println("hands: " + env.hands)
+    println("community cards: " + env.extHands())
     Some(env)
   }
 }
@@ -54,10 +54,11 @@ case object ProbabilityCommand extends ReplCommand {
     sim !? MsgAllDone match {
       case combinations: Array[Int] =>
         val count = combinations.sum
+        println("sum = " + count)
         def toProb(c: Int): Double = (c.toDouble * 10000.0 / count.toDouble).toInt / 100.0
         def toName(i: Int): String = Combination.factories(Combination.factories.length - i - 1).toString
         for (t <- 0 until Combination.factories.length)
-          println("  " + toName(t) + " -> " + toProb(combinations(t)) + "%")
+          println("  " + toName(t) + " -> " + toProb(combinations(t)) + "% (" + combinations(t) + ")")
       case _ =>
         println("Unknown result")
     }
@@ -66,9 +67,9 @@ case object ProbabilityCommand extends ReplCommand {
   }
 }
 
-case class AddOpenCardCommand(card: Card) extends ReplCommand {
+case class AddCardsCommand(cards: List[Card]) extends ReplCommand {
   override def apply(env: Environment) = {
-    val newEnv = env + card
+    val newEnv = env + cards
     println("open cards: " + newEnv.openCards)
     Some(newEnv)
   }
@@ -82,9 +83,19 @@ case object TestCommand extends ReplCommand {
         println("failed to parse str " + str)
         throw new Exception
     }
-    val hand = Hand parse "6D 7D TD 8D 9D" get
-    val strght = hand.straight
+    val hand = Hand parse "ad kd qd jd jc td" get
+    val straight = hand.straight
     val best = Combination best hand
+
+    var count = 0
+    Permutations.foreach(Deck.Full52.cards.toArray, 7, 0, 46) {
+      _ => count += 1
+    }
+
     Some(env)
   }
+}
+
+case object ClearCommand extends ReplCommand {
+  override def apply(env: Environment) = Some(Environment())
 }

@@ -12,3 +12,5 @@ compile
 test
 compile
 test
+compiletest
+test
