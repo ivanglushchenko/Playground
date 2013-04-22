@@ -17,49 +17,33 @@ case class Hand(val cards: List[Card]) extends Ordered[Hand] {
 
     def isConn(c1: Card, c2: Card) = c1.rank - c2.rank == 1
 
-    val startPoint =
-      if (!isConn(sortedCards.tail.head, sortedCards.tail.tail.head)) sortedCards.tail.tail
-      else if (!isConn(sortedCards.head, sortedCards.tail.head)) sortedCards.tail
-      else sortedCards
-
-    def getLongest(prevCard: Card, nextCards: List[Card], acc: List[Card]): List[Card] = nextCards match {
+    def getLongest(prevCard: Card, nextCards: List[Card], acc: List[Card], max: List[Card]): List[Card] = nextCards match {
       case hd :: tl =>
-        if (isConn(prevCard, hd)) getLongest(hd, tl, hd :: acc)
-        else if (prevCard.rank == hd.rank) getLongest(hd, tl, acc)
-        else acc
-      case _ => acc
+        if (isConn(prevCard, hd)) getLongest(hd, tl, hd :: acc, max)
+        else if (prevCard.rank == hd.rank) getLongest(hd, tl, acc, max)
+        else getLongest(hd, tl, List(hd), if (max.size < acc.size) acc else max)
+      case _ => if (max.size < acc.size) acc else max
     }
 
-    val longestSeqWithoutWheel = getLongest(startPoint.head, startPoint.tail, List(startPoint.head))
-    val longestSeq =
-      if (longestSeqWithoutWheel.size >= 4 && longestSeqWithoutWheel.head.rank == NumRank(2) && sortedCards.head.rank == Ace) sortedCards.head :: longestSeqWithoutWheel
-      else longestSeqWithoutWheel
+    def attachWheel(cards: List[Card]) =
+      if (cards.size >= 4 && cards.head.rank == NumRank(2) && sortedCards.head.rank == Ace) sortedCards.head :: cards
+      else cards
 
-    if (longestSeq.size < 5) None
-    else {
-      val sortedLongestSeq = longestSeq.reverse
+    def getLongestStraightSeq(cards: List[Card]) = {
+      val longestSeqWithoutWheel = getLongest(cards.head, cards.tail, List(cards.head), List())
+      attachWheel(longestSeqWithoutWheel)
+    }
 
-      if (suits.head._2 >= 5) {
-        val candidateSuit = suits.head._1
-        def checkFlush(prevCard: Card, nextCards: List[Card], length: Int, highest: Rank): Option[Rank] = nextCards match {
-          case hd :: tl if prevCard.suit == hd.suit =>
-            getFlush(hd, tl, length + 1, if (length == 0) prevCard.rank else highest)
-          case hd :: tl => getFlush(hd, tl, 0, highest)
-          case _ => if (length >= 5) Some(highest) else None
-        }
+    val longestSeq = getLongestStraightSeq(sortedCards)
 
-      } else Some(Straight(sortedLongestSeq.head.rank), false)
-
-      def getFlush(prevCard: Card, nextCards: List[Card], length: Int, highest: Rank): Option[Rank] = nextCards match {
-        case hd :: tl if prevCard.suit == hd.suit =>
-          getFlush(hd, tl, length + 1, if (length == 0) prevCard.rank else highest)
-        case hd :: tl => getFlush(hd, tl, 0, highest)
-        case _ => if (length >= 5) Some(highest) else None
-      }
-      getFlush(sortedLongestSeq.head, sortedLongestSeq.tail, 1, sortedLongestSeq.head.rank) match {
-        case Some(r) => Some(Straight(r), true)
-        case None => Some(Straight(sortedLongestSeq.head.rank), false)
-      }
+    (longestSeq.size, suits.head._2) match {
+      case (i, _) if i < 5 => None
+      case (_, s) if s < 5 => Some(Straight(longestSeq.last.rank), false)
+      case _ =>
+        val suitedCards = sortedCards.filter(_.suit == suits.head._1)
+        val straightFlush = getLongestStraightSeq(suitedCards)
+        if (straightFlush.size < 5) Some(Straight(longestSeq.last.rank), false)
+        else Some(Straight(straightFlush.last.rank), true)
     }
   }
 

@@ -83,13 +83,26 @@ case object TestCommand extends ReplCommand {
         println("failed to parse str " + str)
         throw new Exception
     }
-    val hand = Hand parse "ad kd qd jd jc td" get
-    val straight = hand.straight
-    val best = Combination best hand
 
-    var count = 0
-    Permutations.foreach(Deck.Full52.cards.toArray, 7, 0, 46) {
-      _ => count += 1
+    //ya! Flush A, hand AD 2D 3D 4D 5D KS KC
+    //ya! Flush A, hand AD 2D 3D 4D 5D KS AH
+    //val hand = Hand parse "AD 2D 3D 4D 5D KS KC" get
+    //val straight = hand.straight
+    //val best = Combination best hand
+
+    val hand = Hand parse "AD 4D KD QD 9D" get
+    val deck = Deck.Full52 - hand.cards
+    Permutations.foreach(deck.cards.toArray, 2, 0, deck.cards.size){
+      cards => {
+        val fullHand = Hand(hand.cards ::: cards)
+        val best = Combination best fullHand
+        best match {
+          case RoyalFlush() =>
+          case StraightFlush(_) =>
+          case c =>
+            println("ya! " + c + ", hand " + fullHand)
+        }
+      }
     }
 
     Some(env)
