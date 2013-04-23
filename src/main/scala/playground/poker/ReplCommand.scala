@@ -74,52 +74,12 @@ case class AddCardsCommand(cards: List[Card]) extends ReplCommand {
   }
 }
 
-/**
- * Use this command for testing purposes only
- */
 case class TestCommand(hand: Option[Hand]) extends ReplCommand {
   override def apply(env: Environment) = {
-    // 3S 4S 5S        c1 = 1081, c2 = 1081, c3 = 1081 / 3991, 3151 !!!
-    // 4S 5S 6S        c1 = 1081, c2 = 1081, c3 = 1081 / 3151, 3151
     hand match {
       case Some(h) =>
-        val deck = Deck.Full52 - h.cards
-        var c1 = 0
-        var c2 = 0
-        var c3 = 0
-        var cStraights = 0
-        var cStraightsComb = 0
-
-        Permutations.foreach(deck.cards.toArray, 7 - h.cards.size, 0, deck.cards.size){
-          cards => {
-            var b = false
-            def contains(out: Card) = cards.head == out || cards.tail.head == out || cards.tail.tail.head == out || cards.tail.tail.tail.head == out
-            if (contains(Card(Ace, Spades)) && contains(Card(NumRank(2), Spades))){
-              c1 += 1
-              b = true
-              cStraightsComb += 1
-            }
-            if (contains(Card(NumRank(6), Spades)) && contains(Card(NumRank(7), Spades))) {
-              c2 += 1
-              if (!b) cStraightsComb += 1
-              b = true
-            }
-            if (contains(Card(NumRank(2), Spades)) && contains(Card(NumRank(6), Spades))) {
-              c3 += 1
-              if (!b) cStraightsComb += 1
-              b = true
-            }
-            val fullHand = Hand(h.cards ::: cards)
-            val best = Combination best fullHand
-            best match {
-              case StraightFlush(c) =>
-                cStraights += 1
-                if (!b) println("err? " + c + ", hand " + fullHand)
-              case _ =>
-            }
-          }
-        }
-        println("c1 = " + c1 + ", c2 = " + c2 + ", c3 = " + c3 + " / " + cStraights + ", " + cStraightsComb)
+        val best = Combination best h
+        println(best.toString)
       case None =>
         val h = Hand parse "3S 4S 5S 2S 8C JS AD" get
         val best = Combination best h

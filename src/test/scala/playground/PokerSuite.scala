@@ -46,6 +46,6 @@ class PokerSuite extends FunSuite {
     assert(getBestComb("AD 2C 3D 4D 5D") === Straight(NumRank(5)))
     assert(getBestComb("AD KD QH JD TD 7D 6D") === Flush(Ace))
     assert(getBestComb("AD 2D 3D 4D 5D KS KC") === StraightFlush(NumRank(5)))
-    assert(getBestComb("3S 4S 5S 2S 8C JS AD") == Flush(Jack))
+    assert(getBestComb("3S 4S 5S 2S 8C JS AD") === Flush(Jack))
   }
 }

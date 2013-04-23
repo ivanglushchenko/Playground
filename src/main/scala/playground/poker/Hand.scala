@@ -3,6 +3,8 @@ package playground.poker
 case class Hand(val cards: List[Card]) extends Ordered[Hand] {
   override def toString = cards mkString " "
 
+  val sortedCards = cards.sortBy(_.rank).reverse
+
   lazy val ranks =
     cards
       .groupBy(_.rank).toList.map(p => (p._1, p._2.length))
@@ -32,7 +34,6 @@ case class Hand(val cards: List[Card]) extends Ordered[Hand] {
       attachWheel(longestSeqWithoutWheel, cards)
     }
 
-    val sortedCards = cards.sortBy(_.rank).reverse
     val longestSeq = getLongestStraightSeq(sortedCards)
 
     (longestSeq.size, suits.head._2) match {

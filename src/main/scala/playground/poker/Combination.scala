@@ -131,7 +131,7 @@ case object Flush extends CombinationFactory {
   override def toString = "Flush"
 
   def get(hand: Hand): Option[Combination] = hand.suits match {
-    case List((_, i), _*) if i >= 5 => Some(Flush(hand.highCards.head.rank))
+    case List((s, i), _*) if i >= 5 => Some(Flush(hand.sortedCards.filter(_.suit == s).head.rank))
     case _ => None
   }
 }
