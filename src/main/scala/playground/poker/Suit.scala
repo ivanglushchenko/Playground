@@ -15,14 +15,9 @@ case object Clubs extends Suit {
 }
 
 object Suit {
-  def parse(s: String): Option[Suit] = s.toUpperCase match {
-    case "H" => Some(Hearts)
-    case "D" => Some(Diamonds)
-    case "S" => Some(Spades)
-    case "C" => Some(Clubs)
-  }
+  def parse(line: String): Option[Suit] = ReplInput parseSuit line
 
-  def allExcept(suit: Suit): List[Suit] = List(Hearts, Diamonds, Spades, Clubs).filterNot(_ == suit)
+  def allExcept(suit: Suit): List[Suit] = List(Hearts, Diamonds, Spades, Clubs) filterNot (_ == suit)
 
   val All = Array(Hearts, Diamonds, Spades, Clubs)
 }

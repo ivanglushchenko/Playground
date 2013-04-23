@@ -7,7 +7,7 @@ object Repl {
   def read() = {
     val today = Calendar.getInstance().getTime()
     val prompt = new SimpleDateFormat("HH").format(today) + ":" + new SimpleDateFormat("mm").format(today) + " >> "
-    ReplInput.parseCmd(Console.readLine(prompt))
+    ReplInput.parseCmd(Console readLine prompt)
   }
 
   def loop(env: Environment) {

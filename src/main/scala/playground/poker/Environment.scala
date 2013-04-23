@@ -7,7 +7,7 @@ trait Environment {
   def +(hand: (String, Hand)): Environment
   def +(cards: List[Card]): Environment
 
-  def myHand = if (hands.contains("")) hands("") else Hand(List())
+  def myHand = if (hands contains "") hands("") else Hand(List())
   def myFullHand = extend(myHand)
   def extend(hand: Hand) = new Hand(hand.cards ::: openCards)
   def extHands() = hands.toList.map(t => (t._1, extend(t._2)))

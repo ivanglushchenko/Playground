@@ -3,7 +3,7 @@ package playground.poker
 abstract sealed class Rank extends Ordered[Rank] {
   val value: Int
 
-  def compare(that: Rank) = value.compare(that.value)
+  def compare(that: Rank) = value compare that.value
 }
 
 case object Ace extends Rank {
@@ -33,14 +33,7 @@ case class NumRank(value: Int) extends Rank {
 object Rank {
   implicit def rankToInt(rank: Rank): Int = rank.value
 
-  def parse(s: String): Option[Rank] = s.toUpperCase match {
-    case "A" => Some(Ace)
-    case "K" => Some(King)
-    case "Q" => Some(Queen)
-    case "J" => Some(Jack)
-    case "T" => Some(NumRank(10))
-    case n => Some(NumRank(n.toInt))
-  }
+  def parse(line: String): Option[Rank] = ReplInput parseRank line
 
   val All = (for (i <- 2 to 10) yield NumRank(i)).toArray ++ Array(Jack, Queen, King, Ace)
 }
