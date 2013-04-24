@@ -1,5 +1,8 @@
 package playground.poker
 
+import playground.poker.cards._
+import playground.poker.combinations.Combination
+import playground.poker.util._
 import scala.actors.Actor
 
 case class MsgCalcCompleted(combinations: Array[Int])
@@ -52,7 +55,6 @@ class Simulator(myCards: List[Card], remainingCards: Array[Card]) extends Actor 
           combinations(bestComb.value) += 1
         }
       }
-      //println("done for " + range + ", " + combinations.sum)
       sender ! MsgCalcCompleted(combinations)
     }
 

@@ -1,5 +1,7 @@
 package playground.poker
 
+import playground.poker.cards._
+
 trait Environment {
   val deck: Deck
   val hands: Map[String, Hand]

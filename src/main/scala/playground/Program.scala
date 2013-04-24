@@ -1,7 +1,7 @@
 package playground
 
-import playground.poker._
+import playground.poker.repl._
 
 object Program extends App {
-  Repl.loop(Environment())
+  Repl()
 }

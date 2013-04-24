@@ -1,13 +1,17 @@
 package playground
 
-import playground.poker._
+import playground.poker.cards._
+import playground.poker.repl._
+import playground.poker.combinations._
 import org.scalatest.FunSuite
 import scala.io._
 import java.io._
 
 class PokerSuite extends FunSuite {
+  def getHand(s: String) = ReplInput parseHand s get
+
   test("test ranks") {
-    val hand = Hand.parse("7D 2S 5D 7S AC").get
+    val hand = getHand("7D 2S 5D 7S AC")
     assert(hand.ranks === List((NumRank(7), 2), (Ace, 1), (NumRank(5), 1), (NumRank(2), 1)))
   }
 
@@ -15,22 +19,16 @@ class PokerSuite extends FunSuite {
     val fileName = new File(".").getCanonicalPath() + "\\src\\test\\scala\\playground\\PokerHands.txt"
     val rawLines = (Source fromFile fileName getLines).toList
     val lines = rawLines.head.substring(3) :: rawLines.tail
-    val winningHands = lines.map(str => Hands parse str match {
-      case Some(List(hand1, hand2, _*)) => if (hand1 > hand2) 1 else 0
-      case _ =>
-        println("failed to parse str " + str)
-        throw new Exception
+    val winningHands = lines.map(str => {
+      val hand = getHand(str)
+      val (hand1, hand2) = (Hand(hand.cards take 5), Hand(hand.cards drop 5))
+      if (hand1 > hand2) 1 else 0
     }).sum
     assert(winningHands === 376)
   }
 
   test("compare best combinations") {
-    def getBestComb(str: String) = Hand parse str match {
-        case Some(hand) => hand.combinations.head
-        case None =>
-          println("failed to parse str " + str)
-          throw new Exception
-    }
+    def getBestComb(str: String) = getHand(str).combinations.head
 
     assert(getBestComb("7D 2S 5D 3S AC") === HighCard(Ace))
     assert(getBestComb("7D 2S 5D 7S AC") === OnePair(NumRank(7)))
