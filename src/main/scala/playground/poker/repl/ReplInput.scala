@@ -41,6 +41,11 @@ object ReplInput extends RegexParsers {
   val addCards: Parser[ReplCommand] = "+" ~> hand ^^ { hand => AddCardsCommand(hand.cards) }
   val test: Parser[ReplCommand] = "test" ~> opt(hand) ^^ { TestCommand(_) }
   val clear: Parser[ReplCommand] = "cl" ^^ { _ => ClearCommand }
+  val setPot: Parser[ReplCommand] = "pot" ~ opt("=") ~> "\\d+".r ^^ { pot => SetPotCommand(pot.toInt) }
+  val addPot: Parser[ReplCommand] = "pot" ~ "+" ~> "\\d+".r ^^ { pot => AddPotCommand(pot.toInt) }
+  val call: Parser[ReplCommand] = "call" ~> "\\d+".r ~ opt("*" ~> "\\d+".r) ^^ {
+    case bet ~ callers => CallCommand(bet.toInt, callers map (_.toInt))
+  }
 
   val allCommands: Parser[ReplCommand] = (
       exit
@@ -51,6 +56,9 @@ object ReplInput extends RegexParsers {
       | addCards
       | test
       | clear
+      | setPot
+      | addPot
+      | call
       | hand ~ opt("?") ^^ { case x ~ q => q match {
         case None => SetHandCommand("", x)
         case _ => MultiCommand(List(SetHandCommand("", x), ProbabilityCommand))

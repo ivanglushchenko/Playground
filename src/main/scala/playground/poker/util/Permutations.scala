@@ -1,8 +1,28 @@
 package playground.poker.util
 
 import playground.poker.cards.Card
+import scala.collection.mutable.ListBuffer
+
+/**
+ * For-comprehension-friendly generator of cards permutations
+ */
+class Permutations(cards: List[Card], k: Int) {
+  @inline
+  def foreach[B](f: List[Card] => B) {
+    Permutations.foreach(cards.toArray, k, 0, cards.size) { f(_) }
+  }
+
+  def map[B](f: List[Card] => B) = {
+    val b = ListBuffer[B]()
+    b.sizeHint(cards.size)
+    for (x <- this) b += f(x)
+    b.result
+  }
+}
 
 object Permutations {
+  def apply(cards: List[Card], k: Int): Permutations = new Permutations(cards, k)
+
   /**
    * This function is supposed to be as simple and as fast as possible - we need
    * every bit of raw performance while iterating through all combinations
