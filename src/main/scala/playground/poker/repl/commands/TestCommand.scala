@@ -4,9 +4,18 @@ import playground.poker.combinations._
 import playground.poker.cards._
 import playground.poker.repl._
 import playground.poker._
+import playground.poker.util.{Permutations, Stopwatch}
 
 case class TestCommand(hand: Option[Hand]) extends ReplCommand {
   override def apply(env: Environment) = {
+
+    Stopwatch.measure("going through all combs") {
+      var c = 0
+      Permutations.foreach(Deck.Full52.cards.toArray, 7, 0, 51) { cards => c += 1 }
+      println("c = " + c)
+    }
+
+    /*
     hand match {
       case Some(h) =>
         val best = Combination best h
@@ -16,6 +25,9 @@ case class TestCommand(hand: Option[Hand]) extends ReplCommand {
         val best = Combination best h
         println(best.toString)
     }
+    Some(env)
+    */
+
     Some(env)
   }
 }

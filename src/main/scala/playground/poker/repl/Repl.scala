@@ -3,6 +3,7 @@ package playground.poker.repl
 import java.util.Calendar
 import java.text.SimpleDateFormat
 import playground.poker.{Environment}
+import scala.annotation.tailrec
 
 object Repl {
   def apply() {
@@ -15,6 +16,7 @@ object Repl {
     ReplInput.parseCmd(Console readLine prompt)
   }
 
+  @tailrec
   def loop(env: Environment) {
     read() match {
       case Some(command) => command(env) match {
