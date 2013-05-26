@@ -9,6 +9,10 @@ import playground.poker.util.{Permutations, Stopwatch}
 case class TestCommand(hand: Option[Hand]) extends ReplCommand {
   override def apply(env: Environment) = {
 
+    val h = ReplInput parseHand "ac qd ah js js" get
+    val ff = h.ranks
+    val b = Combination best h
+
     Stopwatch.measure("going through all combs") {
       var c = 0
       Permutations.foreach(Deck.Full52.cards.toArray, 7, 0, 51) { cards => c += 1 }

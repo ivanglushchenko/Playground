@@ -9,10 +9,10 @@
     <file path="/Adapter.scala" changelist="34214634-dea5-462f-af4a-01d6792f53b6" time="1365453104799" ignored="false" />
     <file path="/FeedAdapter.scala" changelist="34214634-dea5-462f-af4a-01d6792f53b6" time="1365453435608" ignored="false" />
     <file path="/TwitterAdapter.scala" changelist="34214634-dea5-462f-af4a-01d6792f53b6" time="1365454035954" ignored="false" />
-    <file path="/Suit.scala" changelist="34214634-dea5-462f-af4a-01d6792f53b6" time="1366740542850" ignored="false" />
+    <file path="/Suit.scala" changelist="34214634-dea5-462f-af4a-01d6792f53b6" time="1369600100917" ignored="false" />
     <file path="/Rank.scala" changelist="34214634-dea5-462f-af4a-01d6792f53b6" time="1366740561354" ignored="false" />
     <file path="/Card.scala" changelist="34214634-dea5-462f-af4a-01d6792f53b6" time="1366463266944" ignored="false" />
-    <file path="/Hand.scala" changelist="34214634-dea5-462f-af4a-01d6792f53b6" time="1366765334406" ignored="false" />
+    <file path="/Hand.scala" changelist="34214634-dea5-462f-af4a-01d6792f53b6" time="1369601868361" ignored="false" />
     <file path="/Combination.scala" changelist="34214634-dea5-462f-af4a-01d6792f53b6" time="1368033749630" ignored="false" />
     <file path="/PokerSuite.scala" changelist="34214634-dea5-462f-af4a-01d6792f53b6" time="1366765511996" ignored="false" />
     <file path="/TwoHalfs.scala" changelist="34214634-dea5-462f-af4a-01d6792f53b6" time="1365645519041" ignored="false" />
@@ -29,7 +29,7 @@
     <file path="/Stopwatch.scala" changelist="34214634-dea5-462f-af4a-01d6792f53b6" time="1366425724442" ignored="false" />
     <file path="/Simulator.scala" changelist="34214634-dea5-462f-af4a-01d6792f53b6" time="1367598350454" ignored="false" />
     <file path="/ProbabilityCommand.scala" changelist="34214634-dea5-462f-af4a-01d6792f53b6" time="1367598446168" ignored="false" />
-    <file path="/TestCommand.scala" changelist="34214634-dea5-462f-af4a-01d6792f53b6" time="1367594838958" ignored="false" />
+    <file path="/TestCommand.scala" changelist="34214634-dea5-462f-af4a-01d6792f53b6" time="1369598778629" ignored="false" />
     <file path="/a.dummy" changelist="34214634-dea5-462f-af4a-01d6792f53b6" time="1366764616080" ignored="false" />
     <file path="/HighCard.scala" changelist="34214634-dea5-462f-af4a-01d6792f53b6" time="1366764948430" ignored="false" />
     <file path="/OnePair.scala" changelist="34214634-dea5-462f-af4a-01d6792f53b6" time="1366764976677" ignored="false" />
@@ -48,6 +48,12 @@
     <file path="/MsgHandRangeProcCompleted.scala" changelist="34214634-dea5-462f-af4a-01d6792f53b6" time="1367598832253" ignored="false" />
     <file path="/MsgSimCompleted.scala" changelist="34214634-dea5-462f-af4a-01d6792f53b6" time="1367598793215" ignored="false" />
     <file path="/JsonElement.scala" changelist="34214634-dea5-462f-af4a-01d6792f53b6" time="1368636004645" ignored="false" />
+    <file path="$PROJECT_DIR$/target/resolution-cache/reports/playground-playground_2.9.2-compile.xml" changelist="34214634-dea5-462f-af4a-01d6792f53b6" time="1369611403950" ignored="false" />
+    <file path="$PROJECT_DIR$/target/resolution-cache/reports/playground-playground_2.9.2-pom.xml" changelist="34214634-dea5-462f-af4a-01d6792f53b6" time="1369611403950" ignored="false" />
+    <file path="$PROJECT_DIR$/target/resolution-cache/reports/playground-playground_2.9.2-provided.xml" changelist="34214634-dea5-462f-af4a-01d6792f53b6" time="1369611403950" ignored="false" />
+    <file path="$PROJECT_DIR$/target/resolution-cache/playground/playground_2.9.2/1.0/resolved.xml.xml" changelist="34214634-dea5-462f-af4a-01d6792f53b6" time="1369611403950" ignored="false" />
+    <file path="$PROJECT_DIR$/target/resolution-cache/reports/playground-playground_2.9.2-sources.xml" changelist="34214634-dea5-462f-af4a-01d6792f53b6" time="1369611403950" ignored="false" />
+    <file path="$PROJECT_DIR$/target/resolution-cache/reports/playground-playground_2.9.2-test.xml" changelist="34214634-dea5-462f-af4a-01d6792f53b6" time="1369611403950" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,7 +71,23 @@
     <disable_hints />
   </component>
   <component name="DebuggerManager">
-    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
+    <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true">
+      <breakpoint url="file://$PROJECT_DIR$/src/main/scala/playground/poker/repl/commands/TestCommand.scala" line="12" class="playground.poker.repl.commands.TestCommand" package="playground.poker.repl.commands">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+    </line_breakpoints>
     <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
       <breakpoint>
         <option name="NOTIFY_CAUGHT" value="true" />
@@ -102,6 +124,7 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </breakpoint_any>
+    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_rules />
     <ui_properties />
   </component>
@@ -111,10 +134,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Program.scala" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/scala/playground/Program.scala">
+      <file leaf-file-name="Hand.scala" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/scala/playground/poker/cards/Hand.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="1" selection-start="91" selection-end="91" vertical-scroll-proportion="0.19428572">
+            <state line="33" column="16" selection-start="1100" selection-end="1100" vertical-scroll-proportion="1.0293578">
               <folding />
             </state>
           </provider>
@@ -130,9 +153,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/main/scala/playground/poker/util/Permutations.scala" />
-        <option value="$PROJECT_DIR$/src/main/scala/playground/poker/repl/Repl.scala" />
-        <option value="$PROJECT_DIR$/src/main/scala/playground/poker/Simulator.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/playground/poker/sim/RangeSplit.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/playground/poker/sim/Simulator.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/playground/poker/sim/MsgSimCompleted.scala" />
@@ -146,14 +166,17 @@
         <option value="$PROJECT_DIR$/src/main/scala/playground/nlp/Parser.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/playground/nlp/TaggedWord.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/playground/nlp/Tagger.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/playground/poker/repl/commands/TestCommand.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/playground/poker/cards/Suit.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/playground/poker/cards/Hand.scala" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1296" />
-    <option name="height" value="1000" />
+    <option name="width" value="1936" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -181,7 +204,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -250,34 +272,61 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="nlp" />
+              <option name="myItemId" value="poker" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Playground" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Playground" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="playground" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="poker" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cards" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
       <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Global Libraries" />
     <property name="GoToFile.includeJavaFiles" value="false" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="MemberChooser.sorted" value="false" />
-    <property name="options.lastSelected" value="editor" />
+    <property name="options.lastSelected" value="preferences.pluginManager" />
     <property name="recentsLimit" value="5" />
-    <property name="last_opened_file_path" value="C:/Program Files/scala/lib/scala-reflect.jar!/" />
+    <property name="last_opened_file_path" value="C:/Program Files (x86)/scala/lib/scalap.jar!/" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="MemberChooser.showClasses" value="true" />
     <property name="FullScreen" value="false" />
+    <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="dynamic.classpath" value="false" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="dynamic.classpath" value="false" />
   </component>
   <component name="RunManager" selected="Application.Program">
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
@@ -320,6 +369,19 @@
       <option name="PORT" value="5005" />
       <method />
     </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method />
+    </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
       <module name="" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -345,19 +407,6 @@
       <envs />
       <properties />
       <listeners />
-      <method />
-    </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -394,20 +443,13 @@
       <patterns />
       <method />
     </configuration>
-    <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android Application">
+    <configuration default="true" type="ScalaScriptRunConfiguration" factoryName="Scala Script">
       <module name="" />
-      <option name="ACTIVITY_CLASS" value="" />
-      <option name="MODE" value="default_activity" />
-      <option name="DEPLOY" value="true" />
-      <option name="TARGET_SELECTION_MODE" value="EMULATOR" />
-      <option name="PREFERRED_AVD" value="" />
-      <option name="USE_COMMAND_LINE" value="true" />
-      <option name="COMMAND_LINE" value="" />
-      <option name="WIPE_USER_DATA" value="false" />
-      <option name="DISABLE_BOOT_ANIMATION" value="false" />
-      <option name="NETWORK_SPEED" value="full" />
-      <option name="NETWORK_LATENCY" value="none" />
-      <option name="CLEAR_LOGCAT" value="false" />
+      <setting name="path" value="" />
+      <setting name="vmparams" value="" />
+      <setting name="consoleargs" value="" />
+      <setting name="params" value="" />
+      <setting name="workingDirectory" value="$PROJECT_DIR$" />
       <method />
     </configuration>
     <configuration default="true" type="ScalaTestRunConfiguration" factoryName="ScalaTest">
@@ -423,13 +465,20 @@
       <setting name="showProgressMessages" value="true" />
       <method />
     </configuration>
-    <configuration default="true" type="ScalaScriptRunConfiguration" factoryName="Scala Script">
+    <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android Application">
       <module name="" />
-      <setting name="path" value="" />
-      <setting name="vmparams" value="" />
-      <setting name="consoleargs" value="" />
-      <setting name="params" value="" />
-      <setting name="workingDirectory" value="$PROJECT_DIR$" />
+      <option name="ACTIVITY_CLASS" value="" />
+      <option name="MODE" value="default_activity" />
+      <option name="DEPLOY" value="true" />
+      <option name="TARGET_SELECTION_MODE" value="EMULATOR" />
+      <option name="PREFERRED_AVD" value="" />
+      <option name="USE_COMMAND_LINE" value="true" />
+      <option name="COMMAND_LINE" value="" />
+      <option name="WIPE_USER_DATA" value="false" />
+      <option name="DISABLE_BOOT_ANIMATION" value="false" />
+      <option name="NETWORK_SPEED" value="full" />
+      <option name="NETWORK_LATENCY" value="none" />
+      <option name="CLEAR_LOGCAT" value="false" />
       <method />
     </configuration>
     <configuration default="false" name="Program" type="Application" factoryName="Application" singleton="true">
@@ -531,28 +580,28 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1296" height="1000" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3298217" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.36666667" sideWeight="0.4996016" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="SBT Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.36555555" sideWeight="0.4996016" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32537788" sideWeight="0.60189575" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3293556" sideWeight="0.6710214" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32528734" sideWeight="0.49960223" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32444444" sideWeight="0.49960223" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32897863" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24959481" sideWeight="0.6710214" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22513922" sideWeight="0.6333333" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22509225" sideWeight="0.6344444" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.42036837" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3288889" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="SBT Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
     </layout>
@@ -622,21 +671,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/scala/playground/poker/sim/MsgHandRangeProcCompleted.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="0" selection-start="166" selection-end="166" vertical-scroll-proportion="0.12085308" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/playground/poker/sim/Simulator.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="25" selection-start="178" selection-end="178" vertical-scroll-proportion="0.1007109" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/playground/poker/util/Stopwatch.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="1" selection-start="294" selection-end="294" vertical-scroll-proportion="0.22156398" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/playground/poker/Environment.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state line="14" column="38" selection-start="392" selection-end="392" vertical-scroll-proportion="0.28199053" />
@@ -652,11 +686,6 @@
         <state line="9" column="3" selection-start="233" selection-end="233" vertical-scroll-proportion="0.12085308" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/playground/poker/sim/HandRangeProcessor.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="0" selection-start="690" selection-end="690" vertical-scroll-proportion="0.38868833" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/playground/poker/combinations/FullHouse.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state line="9" column="0" selection-start="264" selection-end="264" vertical-scroll-proportion="0.18127961" />
@@ -667,55 +696,65 @@
         <state line="7" column="0" selection-start="176" selection-end="176" vertical-scroll-proportion="0.14320096" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/playground/nlp/Tagger.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="8" selection-start="8" selection-end="8" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#24#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/playground/nlp/TaggedWord.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="0" selection-start="24" selection-end="24" vertical-scroll-proportion="0.04028436">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/playground/nlp/Parser.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="70" column="22" selection-start="2234" selection-end="2234" vertical-scroll-proportion="0.45006016">
-          <folding>
-            <element signature="e#24#40#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/playground/nlp/LanguageModel.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="8" selection-start="8" selection-end="8" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/playground/nlp/JsonElement.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="0" selection-start="681" selection-end="681" vertical-scroll-proportion="0.45616114">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/playground/poker/combinations/Flush.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="1" selection-start="549" selection-end="549" vertical-scroll-proportion="0.38270143">
+        <state line="19" column="1" selection-start="549" selection-end="549" vertical-scroll-proportion="0.38270143" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/playground/poker/cards/Card.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="0" selection-start="32" selection-end="32" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/playground/poker/repl/ReplInput.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="30" column="0" selection-start="868" selection-end="868" vertical-scroll-proportion="0.33211008" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/playground/poker/combinations/ThreeOfKind.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="50" selection-start="431" selection-end="431" vertical-scroll-proportion="0.43814433" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/playground/poker/repl/commands/TestCommand.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="20" selection-start="406" selection-end="406" vertical-scroll-proportion="0.23367697">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/playground/poker/cards/Suit.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="25" column="22" selection-start="557" selection-end="557" vertical-scroll-proportion="0.7302405" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/playground/poker/sim/Simulator.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="0" selection-start="484" selection-end="484" vertical-scroll-proportion="0.22018349" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/playground/poker/sim/HandRangeProcessor.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="21" selection-start="201" selection-end="201" vertical-scroll-proportion="0.21834862" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/playground/poker/cards/Rank.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="35" column="0" selection-start="671" selection-end="671" vertical-scroll-proportion="0.7504587">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/playground/Program.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="1" selection-start="91" selection-end="91" vertical-scroll-proportion="0.19428572">
+        <state line="4" column="0" selection-start="52" selection-end="52" vertical-scroll-proportion="0.12477064">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/playground/poker/cards/Hand.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="33" column="16" selection-start="1100" selection-end="1100" vertical-scroll-proportion="1.0293578">
           <folding />
         </state>
       </provider>
@@ -749,6 +788,7 @@
       </state>
       <state key="GlobalLibrariesConfigurable.UI">
         <settings>
+          <last-edited>scala</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -784,7 +824,7 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
-          <last-edited>scala-compiler</last-edited>
+          <last-edited>scalatest_2.9.0-1.9.1</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

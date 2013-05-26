@@ -7,14 +7,29 @@ case class Hand(val cards: List[Card]) extends Ordered[Hand] {
 
   val sortedCards = cards sortBy (_.rank) reverse
 
-  lazy val ranks =
-    cards
-      .groupBy(_.rank).toList.map(p => (p._1, p._2.length))
-      .sortWith((r1, r2) => r1._1.compareTo(r2._1) < 0)
-      .sortWith((r1, r2) => r1._2.compareTo(r2._2) < 0)
-      .reverse
+  // Counting sort improves performance and worsens readability
+  lazy val (ranks, suits) = {
+    var ranksCount = List[(Rank, Int)]()
+    val suitsCount = Array.ofDim[Int](4)
+    var lastCount = 0
+    var lastRank: Rank = Ace
+    for (card <- sortedCards) {
+      if (lastCount > 0 && card.rank != lastRank) {
+        ranksCount = (lastRank, lastCount) :: ranksCount
+        lastCount = 0
+      }
+      lastRank = card.rank
+      lastCount = lastCount + 1
+      suitsCount(card.suit.value) = suitsCount(card.suit.value) + 1
+    }
+    if (lastCount > 0) ranksCount = (lastRank, lastCount) :: ranksCount
 
-  lazy val suits = cards.groupBy(_.suit).toList.map(p => (p._1, p._2.length)).sortBy(-_._2)
+    (ranksCount
+        .sortWith((r1, r2) => r1._1.compareTo(r2._1) < 0)
+        .sortWith((r1, r2) => r1._2.compareTo(r2._2) < 0)
+        .reverse,
+     Suit.All.map(s => (s, suitsCount(s.value))).filter(s => s._2 > 0).sortBy(-_._2).toList)
+  }
 
   lazy val straight = if (cards.length < 5) None else {
     def isConn(c1: Card, c2: Card) = c1.rank - c2.rank == 1
